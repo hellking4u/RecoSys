@@ -20,6 +20,9 @@ def order_rating(probs,cumm_probs):
     return probs.dot(cumm_probs)
 
 def update(source_probs, data, l):
+    logFile = open("logfile.log",a)
+    print >>logFile,source_probs
+    logFile.close()
     N = len(data)
     N_obs = len(data[0])
     probs = [d/float(d.sum()) for d in data]
