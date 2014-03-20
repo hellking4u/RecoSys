@@ -1,5 +1,5 @@
 """
-Module for computing knlwledge source prioritiztion based on bayesian statistics
+Module for computing knowledge source prioritiztion based on bayesian statistics
 
 Functional Usage :
 
@@ -20,7 +20,7 @@ def order_rating(probs,cumm_probs):
     return probs.dot(cumm_probs)
 
 def update(source_probs, data, l):
-    logFile = open("logfile.log",a)
+    logFile = open("logfile.log",'a')
     print >>logFile,source_probs
     logFile.close()
     N = len(data)
@@ -110,9 +110,8 @@ def raw2tfidf(data,mode=0):
         return np.array([np.array(i)*idf for i in ltf])
     if mode == 3:
         return np.array([np.array(i)*idf for i in atf])
-    
 
-def tfidf(init_prob, a,b,c,mode_of_operation = 2, return_term=1):
+def tfidf(init_prob, a, mode_of_operation = 2, return_term=1):
     """
     Mode of Operation :
     0 - Raw Freqency
@@ -120,7 +119,7 @@ def tfidf(init_prob, a,b,c,mode_of_operation = 2, return_term=1):
     2 - ltf - logarithms
     3 - atf - augmented
     """
-    d = corpus_words_dict([a, b, c])
+    d = corpus_words_dict(a)
     reduced = sorted(d.items(), key = lambda x: sum(x[1]),reverse = True)
     #data = dict2term_doc_matx(d)               #raw freq data
     raw_data = raw2tfidf(dict2term_doc_matx(d),2)

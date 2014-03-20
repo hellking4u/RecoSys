@@ -7,7 +7,7 @@ Uses get_articles for extracting content from search_list set.
 from pygoogle import pygoogle
 import content_extractor
 
-default_list = ["Wikipedia", "site:citizendium.org", "Britannica"]
+default_list = ["site:wikipedia.org", "site:citizendium.org", "site:britannica.com"]
 
 def get_wiki_article(search_term, verbose=False, search_list=default_list):
     content_list = []
