@@ -4,7 +4,7 @@ Wrapper for the pygoogle search module,
 
 Uses get_articles for extracting content from search_list set.
 """
-from pygoogle import pygoogle
+from google import search
 import content_extractor
 
 default_list = ["site:wikipedia.org", "site:citizendium.org", "site:britannica.com"]
@@ -14,14 +14,13 @@ def get_wiki_article(search_term, verbose=False, search_list=default_list):
     if verbose:
         print "Begin Search Algorithm for keyword : ", search_term
     for provider in search_list:
-        g = pygoogle(search_term+" "+provider)
-        g.pages = 1
-        root_url = g.get_urls()[0]
+        search_url_generator =  search(search_term+" "+provider, stop=1)
+        root_url = search_url_generator.next()
         if verbose:
             print "Looking at Encyclopedia Article :", root_url
         term = content_extractor.get_content(root_url)
         if verbose:
-            print term['meta']
+            print term['meta'].encode('utf-8', errors='replace')
         content_list.append(term['content'])
     return content_list
 
