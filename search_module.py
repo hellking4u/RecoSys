@@ -1,7 +1,7 @@
 __author__ = 'nikhil'
 """
 Wrapper for the pygoogle search module,
-
+ changed to google search_module
 Uses get_articles for extracting content from search_list set.
 """
 from google import search

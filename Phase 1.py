@@ -5,13 +5,17 @@ import numpy as np
 import random, math
 
 def phase1_update(source_prob, wiki_list, keywords, n_iter, verbosity, mode_of_operation):
+        
+        logfile = open("test_2.txt","a")
         for kw in keywords:
                 wiki_content = sm.get_wiki_article(kw, verbose=verbosity, search_list=wiki_list)
                 print "\n\n Done with Content Extraction. Begin keyword extraction algorithm..."
                 [source_prob, sorted_list] = gurmeet.tfidf(source_prob, wiki_content, mode_of_operation=mode_of_operation, return_term=0)
                 print "\n\n---------\n"
+                logfile.write(kw)
                 for i in range(len(source_prob)):
                         print wiki_list[i], source_prob[i]/source_prob[0]
+                        logfile.write(wiki_list[i]+" "+str(source_prob[i]/source_prob[0]))
                 
         #tr_list = TextRank.text_rank(wiki_content[0])
         return source_prob, sorted_list
