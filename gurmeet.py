@@ -5,8 +5,10 @@ Functional Usage :
 
 """
 __author__ = 'gurmeet'
-import numpy as np, random, operator, re, math, wikipedia
+import numpy as np, random, operator, re, math
 import nltk
+import TextRank
+
 def order_rating(probs,cumm_probs):
     """
         
@@ -111,7 +113,22 @@ def raw2tfidf(data,mode=0):
     if mode == 3:
         return np.array([np.array(i)*idf for i in atf])
 
-def tfidf(init_prob, a, mode_of_operation = 2, return_term=1):
+def textrank(init_prob, a):
+    d = {}
+    for j in range(len(a)):
+        d1 = TextRank.text_rank(a[j])
+        for i in d1.keys():
+            temp = i.lower()
+            if d.has_key(temp) :
+                d[temp][j] = d[temp][j] + d1[i]
+            else :
+                d[temp] = np.zeros(len(a))
+                d[temp][j] = d1[i]
+    source_probs = update(init_prob, dict2term_doc_matx(d), 0)
+    sorted_dict = sorted(d.iteritems(), key = lambda x: x[1].dot(np.array(source_probs)), reverse=True)
+    return [source_probs, sorted_dict]
+
+def tfidf(init_prob, a, mode_of_operation = 0, return_term=1):
     """
     Mode of Operation :
     0 - Raw Freqency
@@ -143,7 +160,7 @@ def test_corpus_probs_update(file_list,mode_of_operation = 2, return_term=1):
     f1 = open(file_list[0], "r").read().lower()
     f2 = open(file_list[1], "r").read().lower()
     f3 = open(file_list[2], "r").read().lower()
-    return tfidf(f1,f2,f3,mode_of_operation, return_term)
+    return tfidf([1/3,1/3,1/3],[f1,f2,f3],mode_of_operation, return_term)
 
-if __name__=="__main__":
-    test_corpus_probs_update(["test_corpus_file_1.txt", "test_corpus_file_2.txt","test_corpus_file_3.txt"], mode_of_operation = 2, return_term=0)
+#if __name__=="__main__":
+#    test_corpus_probs_update(["test_corpus_file_1.txt", "test_corpus_file_2.txt","test_corpus_file_3.txt"], mode_of_operation = 2, return_term=0)

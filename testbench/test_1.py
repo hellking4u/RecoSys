@@ -15,7 +15,7 @@ def phase1_update(source_prob, wiki_list, keywords, n_iter, verbosity, mode_of_o
         for kw in keywords:
                 wiki_content = sm.get_wiki_article(kw, verbose=verbosity, search_list=wiki_list)
                 print "\n\n Done with Content Extraction. Begin keyword extraction algorithm..."
-                [source_prob, sorted_list] = gurmeet.tfidf(source_prob, wiki_content, mode_of_operation=mode_of_operation, return_term=0)
+                [source_prob, sorted_list] = gurmeet.textrank(source_prob, wiki_content)
                 print "\n\n---------\n"
                 logfile.writelines(kw)
                 for i in range(len(source_prob)):

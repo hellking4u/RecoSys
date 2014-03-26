@@ -25,4 +25,4 @@ def get_wiki_article(search_term, verbose=False, search_list=default_list):
     return content_list
 
 if __name__ == "__main__":
-    get_wiki_article("Dog", verbose = True)
+    print get_wiki_article("Dog", verbose = True)
