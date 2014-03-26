@@ -12,8 +12,8 @@ From this paper: http://acl.ldc.upenn.edu/acl2004/emnlp/pdf/Mihalcea.pdf
 """
 import nltk
 import itertools
+import string
 from operator import itemgetter
-import wikipedia, sys, string
 
 from pygraph.classes.graph import graph
 from pygraph.classes.digraph import digraph
@@ -49,20 +49,9 @@ def begin_test(kw):
     """
     TODO : Improve model performance.
     """
-    print "Begin TextRank Algorithm with keyword set",
+    print "Begin TextRank Algorithm with sample string",
     print kw
-    for keyword in kw:
-        page_title = keyword
-        ny = wikipedia.page(page_title)
-        print "Reading from wikipedia...",
-        text = ny.content#.encode('utf-8', errors='replace')
-        print "done"
-        print "------------Page Summary------------\n"
-        print wikipedia.summary(page_title,3).encode('utf-8', errors='replace')
-        print "------------End Summary------------\n"
-        print "------------Begin TextRank algorithm------------\n"
-        op = text_rank(text);
-        print op
+    return text_rank(kw);
 
 def text_rank(text):
     text = text.lower()
@@ -103,10 +92,10 @@ def text_rank(text):
         window_start += 1
         window_end += 1
     calculated_page_rank = pagerank(gr)
-    di = sorted(calculated_page_rank.iteritems(), key=itemgetter(1), reverse=True)
-    return di
+    #di = sorted(calculated_page_rank.iteritems(), key=itemgetter(1), reverse=True)
+    return calculated_page_rank
     #for k, g in di:
         #print k, g
 if __name__=="__main__":
-    kw_list = ["New York", "Boston"]
-    begin_test(kw_list)
+    test_string = "New York is a state in the Northeastern and Mid-Atlantic regions of the United States. New York is the 27th-most extensive, the third-most populous, and the seventh-most densely populated of the 50 United States. New York is bordered by New Jersey and Pennsylvania to the south and by Connecticut, Massachusetts, and Vermont to the east. "
+    print begin_test(test_string)

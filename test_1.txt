@@ -1,0 +1,16 @@
+Delhi
+site:wikipedia.org 1.0
+site:citizendium.org 0.999031844909
+site:britannica.com 0.99938701715
+dog
+site:wikipedia.org 1.0
+site:citizendium.org 0.995103955646
+site:britannica.com 0.998721510562
+mars
+site:wikipedia.org 1.0
+site:citizendium.org 0.987482861737
+site:britannica.com 1.00087848617
+atoms
+site:wikipedia.org 1.0
+site:citizendium.org 0.991786865957
+site:britannica.com 0.995450396552
