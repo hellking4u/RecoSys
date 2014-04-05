@@ -1,4 +1,3 @@
-__author__ = 'nikhil'
 """
 Module for the TextRank Algorithm.
 TextRank is based on Google's PageRank Algorithm, this models text as a sparse graph
@@ -25,11 +24,14 @@ def filter_for_tags(tagged, tags=['NN', 'JJ', 'NNP']):
 
 
 def normalize(tagged):
-    return [(item[0].replace('.', ''), item[1]) for item in tagged]
+    print tagged
+    x = [(item[0].replace('.', ''), item[1]) for item in tagged]
+    print x
+    return x
 
 
 def unique_everseen(iterable, key=None):
-    "List unique elements, preserving order. Remember all elements ever seen."
+    """List unique elements, preserving order. Remember all elements ever seen."""
     # unique_everseen('AAAABBBCCDAABBB') --> A B C D
     # unique_everseen('ABBCcAD', str.lower) --> A B C D
     seen = set()
@@ -51,7 +53,7 @@ def begin_test(kw):
     """
     print "Begin TextRank Algorithm with sample string",
     print kw
-    return text_rank(kw);
+    return text_rank(kw)
 
 def text_rank(text):
     text = text.lower()
@@ -98,4 +100,4 @@ def text_rank(text):
         #print k, g
 if __name__=="__main__":
     test_string = "New York is a state in the Northeastern and Mid-Atlantic regions of the United States. New York is the 27th-most extensive, the third-most populous, and the seventh-most densely populated of the 50 United States. New York is bordered by New Jersey and Pennsylvania to the south and by Connecticut, Massachusetts, and Vermont to the east. "
-    print begin_test(test_string)
+    begin_test(test_string)
