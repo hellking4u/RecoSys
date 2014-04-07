@@ -1,0 +1,82 @@
+Python 2.7.3 (default, Apr 10 2012, 23:31:26) [MSC v.1500 32 bit (Intel)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> ================================ RESTART ================================
+>>> 
+Enter a name for the run : test
+Begin Search Algorithm for keyword :  Delhi
+Looking at Encyclopedia Article : http://en.wikipedia.org/wiki/Delhi
+
+Looking at Encyclopedia Article : http://en.citizendium.org/wiki/New_Delhi_metallo-beta-lactamase-1
+
+Looking at Encyclopedia Article : http://www.britannica.com/EBchecked/topic/156501/Delhi
+City and national capital territory, north-central India. The city of Delhi actually consists of two components: Old Delhi, in the north, the historic city; and New Delhi, in the south, since 1947 the...
+
+
+ Done with Content Extraction. Begin keyword extraction algorithm...
+
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.42554803056
+Britannica 1.18088524169
+Begin Search Algorithm for keyword :  dog
+Looking at Encyclopedia Article : http://en.wikipedia.org/wiki/Dog
+
+Looking at Encyclopedia Article : http://en.citizendium.org/wiki/dog
+
+Looking at Encyclopedia Article : http://www.britannica.com/EBchecked/topic/167647/dog
+Canis lupus familiaris domestic mammal of the family Canidae (order Carnivora). It is a subspecies of the gray wolf (C. lupus) and is related to foxes and jackals. The dog is one of the two most ubiquitous...
+
+
+ Done with Content Extraction. Begin keyword extraction algorithm...
+
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.23793271137
+Britannica 2.73458142702
+Begin Search Algorithm for keyword :  mars
+Looking at Encyclopedia Article : http://en.wikipedia.org/wiki/Mars
+
+Looking at Encyclopedia Article : http://en.citizendium.org/wiki/Mars_(planet)
+
+Looking at Encyclopedia Article : http://www.britannica.com/EBchecked/topic/366330/Mars
+Fourth planet in the solar system in order of distance from the Sun and seventh in size and mass. It is a periodically conspicuous reddish object in the night sky. Mars is designated by the symbol ♂. Sometimes...
+
+
+ Done with Content Extraction. Begin keyword extraction algorithm...
+
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.15245457163
+Britannica 2.67411794684
+Begin Search Algorithm for keyword :  atom
+Looking at Encyclopedia Article : http://en.wikipedia.org/wiki/Atom
+
+Looking at Encyclopedia Article : http://en.citizendium.org/wiki/atom_(science)
+
+Looking at Encyclopedia Article : http://www.britannica.com/EBchecked/topic/41549/atom
+Smallest unit into which matter can be divided without the release of electrically charged particles. It also is the smallest unit of matter that has the characteristic properties of a chemical element....
+
+
+ Done with Content Extraction. Begin keyword extraction algorithm...
+
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.16178010849
+Britannica 3.70173219502
+The top 15 keywords :
+electron [ 0.01194323  0.00692471  0.04290877] 	charge [ 0.00365916  0.0078111   0.04123845] 	magnetic [ 0.00548004  0.00194994  0.03496388] 	electric [ 0.00146607  0.          0.03552765] 	oil [ 0.          0.          0.03027511] 	spin [ 0.00485169  0.00323682  0.02616886] 	force [ 0.00364951  0.00628765  0.02448035] 	atom [ 0.01986379  0.03097896  0.01188367] 	nucleus [ 0.00768297  0.01159342  0.0187995 ] 	way [ 0.00147452  0.00180196  0.02352169] 	mass [ 0.01007691  0.          0.02163961] 	physicist [ 0.00205472  0.          0.01834885] 	number [ 0.0109011   0.02099213  0.00788645] 	proton [ 0.00407927  0.          0.01488793] 	intrinsic [ 0.00055869  0.          0.01548927] 	
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.16178010849
+Britannica 3.70173219502
+>>> 

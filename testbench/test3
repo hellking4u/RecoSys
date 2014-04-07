@@ -1,0 +1,58 @@
+Test 3 - Showing the dilution of the quality of the Britannica article because of the concatenation with the Citizendium article.
+
+
+Python 2.7.3 (default, Apr 10 2012, 23:31:26) [MSC v.1500 32 bit (Intel)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> ================================ RESTART ================================
+>>> 
+Begin Search Algorithm for keyword :  atom
+Looking at Encyclopedia Article : http://en.wikipedia.org/wiki/Atom
+
+Looking at Encyclopedia Article : http://en.citizendium.org/wiki/atom_(science)
+
+Looking at Encyclopedia Article : http://www.britannica.com/EBchecked/topic/41549/atom
+Smallest unit into which matter can be divided without the release of electrically charged particles. It also is the smallest unit of matter that has the characteristic properties of a chemical element....
+
+
+ Done with Content Extraction. Begin keyword extraction algorithm...
+
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.28227446896
+Britannica 2.52181453091
+The top 15 keywords :
+electron [ 0.01194323  0.00692471  0.04290877] 	charge [ 0.00365916  0.0078111   0.04123845] 	magnetic [ 0.00548004  0.00194994  0.03496388] 	electric [ 0.00146607  0.          0.03552765] 	atom [ 0.01986379  0.03097896  0.01188367] 	oil [ 0.          0.          0.03027511] 	spin [ 0.00485169  0.00323682  0.02616886] 	force [ 0.00364951  0.00628765  0.02448035] 	nucleus [ 0.00768297  0.01159342  0.0187995 ] 	mass [ 0.01007691  0.          0.02163961] 	way [ 0.00147452  0.00180196  0.02352169] 	number [ 0.0109011   0.02099213  0.00788645] 	physicist [ 0.00205472  0.          0.01834885] 	proton [ 0.00407927  0.          0.01488793] 	intrinsic [ 0.00055869  0.          0.01548927] 	
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.28227446896
+Britannica 2.52181453091
+Begin Search Algorithm for keyword :  atom
+Looking at Encyclopedia Article : http://en.wikipedia.org/wiki/Atom
+
+Looking at Encyclopedia Article : http://en.citizendium.org/wiki/atom_(science)
+
+Looking at Encyclopedia Article : http://www.britannica.com/EBchecked/topic/41549/atom
+Smallest unit into which matter can be divided without the release of electrically charged particles. It also is the smallest unit of matter that has the characteristic properties of a chemical element....
+
+
+ Done with Content Extraction. Begin keyword extraction algorithm...
+
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.58153051427
+Britannica 1.48621850339
+The top 15 keywords :
+atom [ 0.01986379  0.03097896  0.02775755] 	number [ 0.0109011   0.02099213  0.01774106] 	energy [ 0.01532655  0.01869401  0.01508888] 	chemical [ 0.00782229  0.01604542  0.01230093] 	nucleus [ 0.00768297  0.01159342  0.01265852] 	electron [ 0.01194323  0.00692471  0.01416457] 	atomic [ 0.01658241  0.00893731  0.00716379] 	model [ 0.00535224  0.01244464  0.01031123] 	charge [ 0.00365916  0.0078111   0.01386016] 	matter [ 0.00528021  0.01145633  0.00888075] 	stable [ 0.00689078  0.00944746  0.00754173] 	state [ 0.00479807  0.0094035   0.00743023] 	first [ 0.0010207   0.01057135  0.00835561] 	element [ 0.00596151  0.00832396  0.00661247] 	force [ 0.00364951  0.00628765  0.00997214] 	
+
+---------
+
+Wikipedia 1.0
+Citizendium 1.58153051427
+Britannica 1.48621850339
+>>> 
