@@ -49,7 +49,8 @@ def run_server(kw_list,log):
 		print kw, kw_category
 		get_uri(kw,cat_list['general'], source_probs['general'], 2)
 		if kw_category in cat_list.keys():
-			get_uri(kw,cat_list[kw_category], source_probs['technology'], 2)
+			source_probs[kw_category] = phase_one.phase1_update(source_probs[kw_category], cat_list[kw_category], [item[0] for item in kw_list], 1, True, log)
+			get_uri(kw,cat_list[kw_category], source_probs[kw_category], 2)
 	print_uri()
 		#source_probs = phase_one.phase1_update(source_prob, wiki_list, [kw[0]], n_iter, verbosity, log, mode_of_operation = 4):
 		

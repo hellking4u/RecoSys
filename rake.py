@@ -60,7 +60,7 @@ class RakeKeywordExtractor:
       phrase_scores[" ".join(phrase)] = phrase_score
     return phrase_scores
     
-  def extract(self, text, incl_scores=False):
+  def extract(self, text, incl_scores=True):
     sentences = nltk.sent_tokenize(text)
     phrase_list = self._generate_candidate_keywords(sentences)
     word_scores = self._calculate_word_scores(phrase_list)
@@ -70,6 +70,7 @@ class RakeKeywordExtractor:
       key=operator.itemgetter(1), reverse=True)
     n_phrases = len(sorted_phrase_scores)
     if incl_scores:
+      print dict(sorted_phrase_scores[0:int(n_phrases/self.top_fraction)])
       return dict(sorted_phrase_scores[0:int(n_phrases/self.top_fraction)])
     else:
       return map(lambda x: x[0],

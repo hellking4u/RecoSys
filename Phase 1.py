@@ -4,7 +4,7 @@ import random, math
 import os
 import search_module as sm
 
-def phase1_update(source_prob, wiki_list, keywords, n_iter, verbosity, log, mode_of_operation = 4):
+def phase1_update(source_prob, wiki_list, keywords, n_iter, verbosity, log, mode_of_operation = 5):
         '''
             Compute and return the updated source priorities based on the initial priorities (source_prob) and the keywords.
             Can use text rank (default) as well as tf-idf to do so.
@@ -23,6 +23,9 @@ def phase1_update(source_prob, wiki_list, keywords, n_iter, verbosity, log, mode
                 if verbosity : print "\n\n Done with Content Extraction. Begin keyword extraction algorithm..."
                 if mode_of_operation == 4:
                         source_prob = utilities.textrank(source_prob, wiki_content, log+'_'+str(j)+'_'+kw)
+                elif mode_of_operation == 5:
+                        source_prob = utilities.rake(source_prob, wiki_content, log+'_'+str(j)+'_'+kw)
+         
                 else:
                         source_prob = utilities.tfidf(source_prob, wiki_content, log+'_'+str(j)+'_'+kw, mode_of_operation=mode_of_operation, return_term=0)
                 if verbosity : print "\n\n---------\n"
@@ -74,7 +77,7 @@ def test_run(keywords, verbosity, log):
         N = len(wiki_list)
         source_prob = np.array([1.0/N for i in range(N)])
         logFile.write('Initial source probabilities = '+ str(source_prob)+'\n')
-        mode_of_operation = 4
+        mode_of_operation = 5
         logFile.write('Mode of operation = ' + str(mode_of_operation)+'\n')
         source_prob = phase1_update(source_prob, wiki_list, keywords, 1, verbosity, log+'/'+log, mode_of_operation)
         
@@ -86,7 +89,7 @@ def test_run(keywords, verbosity, log):
         #print key_wiki_err(keywords, [w[1] for w in wiki_list], 2, 3, 2, 'non_correlation_test', mode_of_operation)
 
 if __name__ == "__main__":
-        log = raw_input("Enter a name for the run : ")
+        log = "rake_test"#raw_input("Enter a name for the run : ")
         keywords = ["Delhi", "dog", "mars", "atom"]
         #keywords = ["delhi"]
         verbosity = True

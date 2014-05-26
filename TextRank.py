@@ -100,7 +100,7 @@ def text_rank(text):
         window_end += 1
     calculated_page_rank = pagerank(gr)
     #di = sorted(calculated_page_rank.iteritems(), key=itemgetter(1), reverse=True)
-    render = False
+    render = True
     if (render):
         dot = write(gr)
         gvv = gv.readstring(dot)

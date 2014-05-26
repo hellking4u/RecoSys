@@ -14,6 +14,7 @@ tfidf
 import numpy as np, operator, re, math
 import nltk
 import TextRank
+import rake as rk
 
 def order_rating(probs,cumm_probs):
     """
@@ -148,6 +149,30 @@ def textrank(init_prob, strings, log):
     logFile.close()
     return source_probs
 
+def rake(init_prob, strings, log):
+    """
+        Returns the updated priorities based on initial priorities ('init_probs') and list of strings ('strings').
+        Uses text rank to do so.
+        'log' is the name of file in which log should be saved.
+    """
+    d = {}
+    for j in range(len(strings)):
+        rake_instance = rk.RakeKeywordExtractor()                   #Merging the outputs of text rank applied on each string in strings.
+        d1 = rake_instance.extract(strings[j])
+        for i in d1.keys():
+            temp = i.lower()
+            if d.has_key(temp) :
+                d[temp][j] = d[temp][j] + d1[i]
+            else :
+                d[temp] = np.zeros(len(strings))
+                d[temp][j] = d1[i]
+    source_probs = update(init_prob, dict2term_doc_matx(d), 0, log+"_update_results")
+    sorted_dict = sorted(d.iteritems(), key = lambda x: x[1].dot(np.array(source_probs)), reverse=True)
+    logFile = open(log+'_sorted_dict','a')
+    print >>logFile, sorted_dict
+    logFile.close()
+    return source_probs
+
 def tfidf(init_prob, strings, log, mode_of_operation = 0, return_term=0):
     """
         Returns the updated priorities based on initial priorities ('init_probs') and list of strings ('strings').
@@ -182,3 +207,18 @@ def tfidf(init_prob, strings, log, mode_of_operation = 0, return_term=0):
     logFile.close()
 
     return source_probs
+if __name__ == '__main__':
+    print "test"
+    rake_instance = rk.RakeKeywordExtractor()                   #Merging the outputs of text rank applied on each string in strings.
+    d1 = rake_instance.extract("""
+Compatibility of systems of linear constraints over the set of natural 
+numbers. Criteria of compatibility of a system of linear Diophantine 
+equations, strict inequations, and nonstrict inequations are considered. 
+Upper bounds for components of a minimal set of solutions and algorithms 
+of construction of minimal generating sets of solutions for all types of 
+systems are given. These criteria and the corresponding algorithms for 
+constructing a minimal supporting set of solutions can be used in solving 
+all the considered types of systems and systems of mixed types.
+  """)
+    print d1
+ 
