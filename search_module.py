@@ -20,14 +20,17 @@ def get_wiki_article(search_term, verbose=False, search_list=default_list):
     for provider in search_list:
         if provider != "random":
             search_url_generator =  search(search_term+" "+provider, stop=1)
-            root_url = search_url_generator.next()
-            if verbose:
-                print "Looking at Encyclopedia Article :", root_url
-            term = content_extractor.get_content(root_url)
-            def_size = len(term['content'])
-            if verbose:
-                print term['meta'].encode('utf-8', errors='replace')
-            content_list.append(term['content'])
+            try:
+                root_url = search_url_generator.next()
+                if verbose:
+                    print "Looking at Encyclopedia Article :", root_url
+                term = content_extractor.get_content(root_url)
+                def_size = len(term['content'])
+                if verbose:
+                    print term['meta'].encode('utf-8', errors='replace')
+                content_list.append(term['content'])
+            except:
+                content_list.append("-")
         else:
             print "Random Text generation"
             content_list.append(random_text.get_random_text(def_size))

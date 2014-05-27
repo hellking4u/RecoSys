@@ -1,5 +1,8 @@
 '''
-Module to generate text of a given size
+Module to generate text of a given size.
+
+Function:
+get_random_text
 '''
 
 import random
@@ -27,5 +30,6 @@ def get_random_text(text_size):
 	required_terms = text_size/(average_word_size*2)
 	random_text = ' '.join(random.sample(text_corpus, required_terms))
 	return random_text
+
 if __name__ =="__main__":
 	print get_random_text(1000);

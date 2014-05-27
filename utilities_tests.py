@@ -11,7 +11,7 @@ import utilities
 import numpy as np
 import random
 
-def dummy_ini(log):
+def dummy_ini(log = None):
     """
         Dummy initialization for testing the update module.
         'log' is the name of file in which log should be saved.
@@ -20,15 +20,21 @@ def dummy_ini(log):
         N = Number of sources
         N_obs = Number of keywords
     """
+
     N, N_obs = 3, 10
-    logFile = open(log,'a')
-    print >>logFile, 'Initialization of source keyword matrix with random values.'
-    print >>logFile, 'Number of sources = 3'
-    print >>logFile, 'Number of keywords = 10'
-    logFile.close()
+    if not log:
+        logFile = open(log,'a')
+        print >>logFile, 'Initialization of source keyword matrix with random values.'
+        print >>logFile, 'Number of sources = 3'
+        print >>logFile, 'Number of keywords = 10'
+        logFile.close()
     return [np.random.uniform(0,1,N_obs) for i in range(N)], np.array([1.0/N for i in range(N)])
 
 def test_update():
+    """
+        Test module for update function of utilities module. 
+    """
+    
     data, source_probs = dummy_ini('test_init.log')
     print "Initial priorities : ",
     print source_probs

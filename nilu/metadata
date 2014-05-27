@@ -1,5 +1,0 @@
-Verbosity = True
-Keywords = <listreverseiterator object at 0x934e90c>
-Wiki List = [('Wikipedia', 'site:wikipedia.org'), ('Citizendium', 'site:citizendium.org'), ('Britannica', 'site:britannica.com'), ('random', 'random')]
-Initial source probabilities = [ 0.25  0.25  0.25  0.25]
-Mode of operation = 4

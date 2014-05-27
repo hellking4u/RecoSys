@@ -13,41 +13,47 @@ def doc_categorize(fsort):
     return cat_prob
 
 def main(url, log):
-    log1 = log
-    while True:
-        if not os.path.exists(log1):
-            os.makedirs(log1)
-            break
-        else : log1 = log1+'_'
+
+    if not log == None:
+        log1 = log
+        while True:
+            if not os.path.exists(log1):
+                os.makedirs(log1)
+                break
+            else : log1 = log1+'_'
     content = content_extractor.get_content(url)
 
-    logFile = open(log1+'/metadata',"a")
-    logFile.write("URL : "+url+"\n\n")
-    logFile.write("Title : "+content['title']+"\n\n")
-    logFile.write("Meta Desc. : "+content['meta']+"\n\n")
-    logFile.write("Content : "+content['content'].encode("utf8")+"\n\n")
-    logFile.close()
+    if not log == None:
+        logFile = open(log1+'/metadata',"a")
+        logFile.write("URL : "+url+"\n\n")
+        logFile.write("Title : "+content['title']+"\n\n")
+        logFile.write("Meta Desc. : "+content['meta']+"\n\n")
+        logFile.write("Content : "+content['content'].encode("utf8")+"\n\n")
+        logFile.close()
 
     d = TextRank.text_rank(content['content'])
     sortd = sorted(d.iteritems(), key = operator.itemgetter(1), reverse=True)
 
-    logtext = open(log1+'/textrank_result',"a")
-    logtext.write(str(sortd))
-    logtext.close()
+    if not log == None:
+        logtext = open(log1+'/textrank_result',"a")
+        logtext.write(str(sortd))
+        logtext.close()
 
-    final=[]
-    for i in sortd:
-        for j in range(len(source_probs)):
-            final.append((i[0], j, i[1]*source_probs[j]))
+    #final=[]
+    #for i in sortd:
+    #    for j in range(len(server.source_prob)):
+    #        final.append((i[0], j, i[1]*server.source_prob[j]))
 
-    fsort = sorted(final, key = operator.itemgetter(2), reverse=True)
-    logres = open(log1+'/result',"a")
-    logres.write(str(fsort))
-    logres.close()
-    server.run_server(fsort[:10])
+    #fsort = sorted(final, key = operator.itemgetter(2), reverse=True)
+    #logres = open(log1+'/result',"a")
+    #logres.write(str(fsort))
+    #logres.close()
+    links = server.run_server(sortd[:3])
+    for link in links:
+        print link
 
 if __name__ == "__main__":
-    log = "client_run_tech"#raw_input("Enter a name for the run : ")
+    log = None#raw_input("Enter a name for the run : ")
     url = 'http://www.cbsnews.com/news/astronomer-bruce-woodgate-inventor-of-the-camera-used-on-hubble-telescope-has-died/'
     main(url, log)
     #print doc_categorize(fsort[:10])

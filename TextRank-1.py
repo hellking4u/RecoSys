@@ -18,17 +18,29 @@ from pygraph.classes.graph import graph
 from pygraph.classes.digraph import digraph
 from pygraph.algorithms.pagerank import pagerank
 from pygraph.classes.exceptions import AdditionError
+from pygraph.readwrite.dot import write
+import sys
+
+# Windows -
+import graphviz as gv
+
+# Unix -
+#sys.path.append('..')
+#sys.path.append('/usr/lib/graphviz/python/')
+#sys.path.append('/usr/lib64/graphviz/python/')
+#import gv
 
 def filter_for_tags(tagged, tags=['NN', 'JJ', 'NNP']):
     return [item for item in tagged if item[1] in tags]
 
 
 def normalize(tagged):
-    return [(item[0].replace('.', ''), item[1]) for item in tagged]
+    x = [(item[0].replace('.', ''), item[1]) for item in tagged]
+    return x
 
 
 def unique_everseen(iterable, key=None):
-    "List unique elements, preserving order. Remember all elements ever seen."
+    """List unique elements, preserving order. Remember all elements ever seen."""
     # unique_everseen('AAAABBBCCDAABBB') --> A B C D
     # unique_everseen('ABBCcAD', str.lower) --> A B C D
     seen = set()
@@ -50,7 +62,7 @@ def begin_test(kw):
     """
     print "Begin TextRank Algorithm with sample string",
     print kw
-    return text_rank(kw);
+    return text_rank(kw)
 
 def text_rank(text):
     text = text.lower()
@@ -92,10 +104,16 @@ def text_rank(text):
         window_end += 1
     calculated_page_rank = pagerank(gr)
     #di = sorted(calculated_page_rank.iteritems(), key=itemgetter(1), reverse=True)
+    render = True
+    if (render):
+        dot = write(gr)
+        gvv = gv.readstring(dot)
+        gv.layout(gvv,'dot')
+        gv.render(gvv,'png','textrank.png')
     return calculated_page_rank
     #for k, g in di:
         #print k, g
 
-if __name__=="__main__":
+if __name__ == "__main__":
     test_string = "New York is a state in the Northeastern and Mid-Atlantic regions of the United States. New York is the 27th-most extensive, the third-most populous, and the seventh-most densely populated of the 50 United States. New York is bordered by New Jersey and Pennsylvania to the south and by Connecticut, Massachusetts, and Vermont to the east. "
     print begin_test(test_string)

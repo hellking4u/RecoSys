@@ -1,5 +1,6 @@
 #server.py
-import categorizer as cat_mod
+#import categorizer as cat_mod
+import dmoz
 phase_one = __import__("Phase 1")
 import search_module as sm
 from google import search
@@ -32,26 +33,28 @@ def get_uri(kw, source_list, source_prob, n):
 
 def print_uri():
     for link in uri_list:
-	print link
+		print link
 
-def run_server(kw_list,log):
+def run_server(kw_list,log = None):
 	global source_probs
+	global uri_list
 	cat_list = {}
 	cat_list['general'] = wiki_list = [("Wikipedia", "site:wikipedia.org"), ("Citizendium", "site:citizendium.org"), ("Britannica", "site:britannica.com")]
 	cat_list['technology'] = [("gizmodo","gizmodo"), ("theverge","theverge"), ("engadget","engadget")]
 
-	source_probs['general'] = phase_one.phase1_update(source_probs['general'], cat_list['general'], [item[0] for item in kw_list], 1, True, log)
+	source_probs['general'] = phase_one.phase1_update(source_probs['general'], cat_list['general'], [item[0] for item in kw_list], 1, True, log = log)
 
 	pickle.dump( source_probs, open( "source_probabilities.sp", "wb" ) )
 
 	for kw in kw_list:
-		kw_category = string.lower(cat_mod.categorize(kw[0]))
+		kw_category = string.lower(dmoz.categorize(kw[0]))
 		print kw, kw_category
 		get_uri(kw,cat_list['general'], source_probs['general'], 2)
 		if kw_category in cat_list.keys():
-			source_probs[kw_category] = phase_one.phase1_update(source_probs[kw_category], cat_list[kw_category], [item[0] for item in kw_list], 1, True, log)
+			source_probs[kw_category] = phase_one.phase1_update(source_probs[kw_category], cat_list[kw_category], [item[0] for item in kw_list], 1, True, log = log)
 			get_uri(kw,cat_list[kw_category], source_probs[kw_category], 2)
 	print_uri()
+	return uri_list
 		#source_probs = phase_one.phase1_update(source_prob, wiki_list, [kw[0]], n_iter, verbosity, log, mode_of_operation = 4):
 		
 if __name__ == '__main__':

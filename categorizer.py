@@ -44,7 +44,7 @@ def get_correlation_by_id(id1,id2):
 
 def categorize(term):
 	#print "categorizing term : ", term
-	list_of_cats = ["Entertainment", "Technology", "People", "Science"]
+	list_of_cats = ["Entertainment", "Technology", "People", "Science", "History", "Kids", "Arts", "Games"]
 	try:
 		term_page_id = wikipedia.page(term).pageid
 		cat_corr = []
@@ -55,12 +55,12 @@ def categorize(term):
 				cat_corr.append(0)
 			else:
 				cat_corr.append(float(cat_correlation))
-			#print cat_correlation
+			cat_correlation
 		max_index, max_value = max(enumerate(cat_corr), key=operator.itemgetter(1))
 		return list_of_cats[max_index]
 	except:
 		return 'Disambiguish_cat'
 
 if __name__ == '__main__':
-	print categorize("iPhone")
+	print categorize("Galileo")
 	#categorize("Nexus 5")
