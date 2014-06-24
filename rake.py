@@ -1,5 +1,18 @@
 """
 Module for Rake keyword extraction technique.
+
+Functions : 
+isPunct
+isNumeric
+test
+
+Class :
+RakeKeywordExtractor
+   __init__
+   _generate_candidate_keywords
+   _calculate_word_scores
+   _calculate_phrase_scores
+   extract
 """
 
 # Adapted from: github.com/aneesha/RAKE/rake.py

@@ -18,7 +18,7 @@ def get_wiki_article(search_term, verbose=False, search_list=default_list):
     if verbose:
         print "Begin Search Algorithm for keyword : ", search_term
     for provider in search_list:
-        if provider != "random":
+        if provider not in ["random", "combined"]:
             search_url_generator =  search(search_term+" "+provider, stop=1)
             try:
                 root_url = search_url_generator.next()
@@ -32,8 +32,12 @@ def get_wiki_article(search_term, verbose=False, search_list=default_list):
             except:
                 content_list.append("-")
         else:
-            print "Random Text generation"
-            content_list.append(random_text.get_random_text(def_size))
+            if provider == "random":
+                print "Random Text generation"
+                content_list.append(random_text.get_random_text(def_size))
+            if provider == "combined":
+                print "Merging two previous articles"
+                content_list.append(content_list[-1] + content_list[-2])
 
     return content_list
 
